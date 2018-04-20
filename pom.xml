@@ -136,9 +136,9 @@
             </dependency>
             <!--  -->
 			<dependency>
-			    <groupId>commons-dbcp</groupId>
-			    <artifactId>commons-dbcp</artifactId>
-			    <version>1.2.1</version>
+			    <groupId>org.apache.commons</groupId>
+			    <artifactId>commons-dbcp2</artifactId>
+			    <version>2.2.0</version>
 			</dependency>
             <!--  -->
 			<dependency>
@@ -236,12 +236,19 @@
 			    <artifactId>jaxen</artifactId>
 			    <version>1.1.6</version>
 			</dependency>
-			<!-- 
+			<!--  -->
 			<dependency>
-			    <groupId>javax.servlet.jsp.jstl</groupId>
+			    <groupId>javax.servlet</groupId>
+			    <artifactId>javax.servlet-api</artifactId>
+			    <version>4.0.0</version>
+			    <scope>provided</scope>
+			</dependency>
+			<!--  -->
+			<dependency>
+			    <groupId>javax.servlet</groupId>
 			    <artifactId>jstl</artifactId>
 			    <version>1.2</version>
-			</dependency> -->
+			</dependency>
 			<!--  -->
 			<dependency>
 			    <groupId>junit</groupId>
