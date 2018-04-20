@@ -9,7 +9,8 @@
         <module>pm-wm-common</module>
 		<module>pm-wm-admin</module>
 		<module>pm-wm-portal</module>
-    </modules>
+		<module>pm-wm-app</module>
+	</modules>
 	<repositories>
 		<!-- maven私服 -->
 		<repository>
