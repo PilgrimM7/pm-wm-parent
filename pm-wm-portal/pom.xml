@@ -16,20 +16,14 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>com.pilgrimm</groupId>
-			<artifactId>pm-wm-admin</artifactId>
+			<artifactId>pm-wm-common</artifactId>
 			<type>war</type>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.pilgrimm</groupId>
-			<artifactId>pm-wm-admin</artifactId>
+			<artifactId>pm-wm-common</artifactId>
 			<type>jar</type>
 			<classifier>classes</classifier>
 			<scope>provided</scope>
