@@ -14,6 +14,7 @@ public class DefaultPageResultGenerator<T> implements PageResultGenerator<T> {
 		this.dao = dao;
 	}
 
+	@Override
 	public Map<String, Object> pageMap(PageSqlEntry pageSqlEntry, Map<String, Object> paramMap) {
 		if (paramMap.get("pageNumber") == null) {
 			throw new NullPointerException("pageNumber");
@@ -35,6 +36,7 @@ public class DefaultPageResultGenerator<T> implements PageResultGenerator<T> {
 		return pageMap;
 	}
 
+	@Override
 	public PageResult<T> pageResult(PageSqlEntry pageSqlEntry, Map<String, Object> paramMap) {
 		if (paramMap.get("pageNumber") == null) {
 			throw new NullPointerException("pageNumber");

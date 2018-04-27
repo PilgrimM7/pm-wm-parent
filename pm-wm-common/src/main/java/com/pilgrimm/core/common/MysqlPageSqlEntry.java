@@ -8,10 +8,12 @@ public class MysqlPageSqlEntry implements PageSqlEntry {
 		this.sql = sql;
 	}
 
+	@Override
 	public String getSql() {
 		return sql;
 	}
 	
+	@Override
 	public String getPageSql(int pageNumber, int pageSize) {
 		StringBuffer sb = new StringBuffer(sql);
 		sb.append(" LIMIT " + (pageNumber - 1) * pageSize + ", " 
@@ -19,6 +21,7 @@ public class MysqlPageSqlEntry implements PageSqlEntry {
 		return sb.toString();
 	}
 
+	@Override
 	public String getPageSql(PageParam pageParam) {
 		StringBuffer sb = new StringBuffer(sql);
 		sb.append(" LIMIT " + (pageParam.getPageNumber() - 1) * pageParam.getPageSize() + ", " 
