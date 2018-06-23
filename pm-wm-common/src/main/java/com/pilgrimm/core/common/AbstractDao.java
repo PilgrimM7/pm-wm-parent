@@ -86,7 +86,7 @@ public abstract class AbstractDao {
 		bufferSql.append(sql);
 		bufferSql.append(") c");
 		return namedParameterJdbcTemplate.queryForObject(bufferSql.toString(),
-				paramMap, Integer.class);
+				paramMap, Long.class);
 	}
 
 	protected long queryForTotal(String sql, SqlParameterSource paramSource) {
@@ -95,7 +95,7 @@ public abstract class AbstractDao {
 		bufferSql.append(sql);
 		bufferSql.append(") c");
 		return namedParameterJdbcTemplate.queryForObject(bufferSql.toString(),
-				paramSource, Integer.class);
+				paramSource, Long.class);
 	}
 	
 	protected Map<String, Object> queryForPageMap(

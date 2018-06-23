@@ -18,6 +18,19 @@
 		<!-- 只扫描Controller -->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />  
     </context:component-scan>
+    
+    <!-- <context:component-scan /> -->
+    <!-- 扫描指定的包中的类上的注解，常用的注解有： -->
+    <!-- @Controller 声明Action组件 -->
+    <!-- @Service 声明Service组件 @Service("xxxService") -->
+    <!-- @Repository 声明Dao组件 -->
+    <!-- @Component 泛指组件, 当不好归类时. -->
+    <!-- @RequestMapping("/menu") 请求映射 -->
+    <!-- @Resource 用于注入，(j2ee提供的 ) 默认按名称装配，@Resource(name="beanName") -->
+    <!-- @Autowired 用于注入，(spring提供的) 默认按类型装配 -->
+    <!-- @Transactional(rollbackFor={Exception.class}) 事务管理 -->
+    <!-- @ResponseBody将内容或对象作为 HTTP 响应正文返回，并调用适合HttpMessageConverter的Adapter转换对象，写入输出流 -->
+    <!-- @Scope("prototype") 设定bean的作用域 -->
 	
 	<!-- HTTL 视图解析器 -->
 	<bean id="viewResolver" class="httl.web.springmvc.HttlViewResolver">
@@ -82,5 +95,23 @@
 				<value>application/json;charset=UTF-8</value>
 			</list>
 		</property>
+	</bean>
+	
+	<!-- 未认证或未授权时跳转必须在springmvc里面配，spring-shiro里的shirofilter配不生效 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!-- 表示捕获的异常 -->
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    <!-- 捕获该异常时跳转的路径 -->
+                    /403
+                </prop>
+                <!-- 表示捕获的异常 -->
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    <!-- 捕获该异常时跳转的路径 -->
+                    /403
+                </prop>
+            </props>
+        </property>
 	</bean>
 </beans>
