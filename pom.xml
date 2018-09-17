@@ -10,7 +10,8 @@
 		<module>pm-wm-admin</module>
 		<module>pm-wm-portal</module>
 		<module>pm-wm-app</module>
-	</modules>
+    <module>pm-wm-study</module>
+  </modules>
 	<repositories>
 		<!-- maven私服 -->
 		<repository>
