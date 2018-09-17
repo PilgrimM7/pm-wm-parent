@@ -12,4 +12,9 @@ public class LayuiController {
 		return "/frontend/layui/index";
 	}
 	
+	@RequestMapping("/magnifier")
+	public String magnifier() {
+		return "/frontend/layui/magnifier";
+	}
+	
 }
