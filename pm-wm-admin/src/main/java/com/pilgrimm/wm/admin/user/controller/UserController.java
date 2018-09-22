@@ -2,6 +2,7 @@ package com.pilgrimm.wm.admin.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +30,19 @@ public class UserController extends AbstractController {
 	@Autowired
 	private UserService userService;
 	
+	private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	/**
-	 * 获取所有用户列表
+	 * 事务测试
 	 */
 	@RequestMapping("/txTest")
 	public void txTest(HttpServletRequest request) {
 		
-		userService.txTest(new User(1, "cc", 27), new User(1, "ff", 27));
+		try {
+			userService.txTest(new User(1, "cc", 27), new User(1, "ff", 27));
+		} catch (Exception e) {
+			logger.error("异常" + "_" + e.getMessage(), e);
+		}
 	}
 	
 	/**
@@ -133,8 +142,8 @@ public class UserController extends AbstractController {
 		try {
 			PrintWriter out = response.getWriter();
 			out.write(result);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("异常" + "_" + e.getMessage(), e);
 		}
 
 	}

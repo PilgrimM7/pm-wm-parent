@@ -20,7 +20,7 @@
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
       
-	<!-- 自动织入包扫描，与spring-mvc.xml中的一起使用 -->
+	<!-- 自动织入包扫描，与spring-mvc.xml中的一起使用（后加载spring-mvc.xml） -->
     <context:component-scan base-package="com.pilgrimm.wm">  
 	    <!-- 不扫描Controller -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>  

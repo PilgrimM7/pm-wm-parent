@@ -1,5 +1,8 @@
 package com.pilgrimm.wm.admin.base.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pilgrimm.core.common.AbstractController;
 
@@ -51,22 +55,36 @@ public class HomeController extends AbstractController {
 		return "/home/hplus/index";
 	}
 	
+	/**
+	 * 登录页
+	 */
+	@RequestMapping("/login")
+	public String login() {
+		return "/home/login";
+	}
+	
+	/**
+	 * 登录
+	 */
+	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String userName, String password, Model model) {
+	public Map<String, Object> login(String username, String password) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("errcode", "0");
 		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		try {
 			subject.login(token);
 		} catch (UnknownAccountException e) {
 			e.printStackTrace();
-			model.addAttribute("userName", "用户名错误！");
-			return "login";
+			map.put("errcode", "1");
+			map.put("errmsg", "用户名错误！");
 		} catch (IncorrectCredentialsException e) {
 			e.printStackTrace();
-			model.addAttribute("password", "密码错误！");
-			return "login";
+			map.put("errcode", "1");
+			map.put("errmsg", "密码错误！");
 		}
-		return "/home/index";
+		return map;
 	}
 
 }
