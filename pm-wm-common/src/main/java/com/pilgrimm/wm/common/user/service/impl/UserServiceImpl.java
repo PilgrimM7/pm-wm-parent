@@ -44,6 +44,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public User findByUsername(String username) {
+		return userMapper.findByUsername(username);
+	}
 
 	public List<User> findAll() {
 		return userMapper.findAll();

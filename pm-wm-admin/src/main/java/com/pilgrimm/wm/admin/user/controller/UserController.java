@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,6 +183,7 @@ public class UserController extends AbstractController {
 	 * 列表页 
 	 */
 	@RequestMapping("/index")
+	@RequiresPermissions("user:index")
 	public String index() {
 		return "/user/index";
 	}

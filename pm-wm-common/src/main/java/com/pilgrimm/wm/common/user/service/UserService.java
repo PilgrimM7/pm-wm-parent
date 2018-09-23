@@ -15,6 +15,8 @@ public interface UserService {
 	
 	User findById(int id);  
 	
+	User findByUsername(String username);  
+	
     List<User> findAll();
     
     void txTest(User user1, User user2);

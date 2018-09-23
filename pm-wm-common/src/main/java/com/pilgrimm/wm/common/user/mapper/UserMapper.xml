@@ -23,6 +23,10 @@
     <select id="findById" parameterType="int" resultType="User">  
         select id,name,age from t_user where id=#{id}  
     </select>  
+    
+    <select id="findByUsername" parameterType="String" resultType="User">  
+        select id,name,age,username,password from t_user where username=#{username}  
+    </select>  
       
     <select id="findAll" resultType="User">  
         select id,name,age from t_user  

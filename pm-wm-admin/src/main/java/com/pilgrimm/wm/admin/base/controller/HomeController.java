@@ -30,6 +30,14 @@ public class HomeController extends AbstractController {
 	public String index() {
 		return "/home/index";
 	}
+	
+	/**
+	 * 首页
+	 */
+	@RequestMapping("/home")
+	public String home() {
+		return "/home/home";
+	}
 
 	/**
 	 * 列表页 
@@ -85,6 +93,15 @@ public class HomeController extends AbstractController {
 			map.put("errmsg", "密码错误！");
 		}
 		return map;
+	}
+	
+	/**
+	 * 登出
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SecurityUtils.getSubject().logout();
+		return "redirect:/home/login";
 	}
 
 }
