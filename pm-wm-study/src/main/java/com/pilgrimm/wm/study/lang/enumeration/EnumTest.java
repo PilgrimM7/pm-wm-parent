@@ -33,8 +33,8 @@ public class EnumTest {
 			}
 		}
 		
-		DateTimeFormatter b = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDate.parse(text, formatter)
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDate.parse("", formatter);
 
 	}
 

@@ -1,7 +1,13 @@
 package com.pilgrimm.wm.study.jadk.pdf;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class HtmlToPdfTest {
 	
