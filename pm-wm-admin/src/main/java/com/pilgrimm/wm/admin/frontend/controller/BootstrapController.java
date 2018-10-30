@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BootstrapController {
 	
 	@RequestMapping("/index")
-	public String abc() {
+	public String index() {
 		return "/frontend/bootstrap/index";
 	}
 	

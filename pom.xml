@@ -53,6 +53,9 @@
         <itext-asian.version>5.2.0</itext-asian.version>
         <!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
         <xmlworker.version>5.5.12</xmlworker.version>
+        
+        <!-- com.alibaba fastjson版本 -->
+        <fastjson.version>1.2.7</fastjson.version>
 	</properties>
 
 	<dependencyManagement>
@@ -123,6 +126,11 @@
 			<dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-websocket</artifactId>
                 <version>${spring.version}</version>
             </dependency>
             <!--  -->
@@ -334,6 +342,11 @@
                 <groupId>com.itextpdf.tool</groupId>
                 <artifactId>xmlworker</artifactId>
                 <version>${xmlworker.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 		</dependencies>
 	</dependencyManagement>
