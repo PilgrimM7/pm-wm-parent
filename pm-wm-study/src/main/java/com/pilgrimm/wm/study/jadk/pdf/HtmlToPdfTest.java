@@ -38,7 +38,7 @@ public class HtmlToPdfTest {
 		html.append("<body>");
 		html.append("<h1>你好！</h1>");
 		html.append("</body>");
-		ByteArrayInputStream htmlStringStream = new ByteArrayInputStream(html.toString().getBytes());
+		ByteArrayInputStream htmlStringStream = new ByteArrayInputStream(html.toString().getBytes("UTF-8"));
  
 		// 创建一个document对象实例
 		Document document = new Document();

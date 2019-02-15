@@ -16,6 +16,10 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
         <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.pilgrimm</groupId>
             <artifactId>pm-wm-common</artifactId>
             <type>war</type>

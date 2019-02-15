@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+        <description>上传文件</description>
+        <display-name>ServletForUpload</display-name>
+        <servlet-name>ServletForUpload</servlet-name>
+        <servlet-class>com.pilgrimm.wm.study.jadk.servlet.ServletForUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletForUpload</servlet-name>
+        <url-pattern>/uploadFile</url-pattern>
+    </servlet-mapping>
+  
 </web-app>

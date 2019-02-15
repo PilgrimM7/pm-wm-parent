@@ -5,12 +5,24 @@
 	<artifactId>pm-wm-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+	
 	<modules>
         <module>pm-wm-common</module>
 		<module>pm-wm-admin</module>
 		<module>pm-wm-portal</module>
 		<module>pm-wm-app</module>
-    <module>pm-wm-study</module>
+        <module>pm-wm-study</module>
   </modules>
 	<repositories>
 		<!-- maven私服 -->
@@ -40,6 +52,7 @@
 	<properties>
 		<!-- 编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<aopalliance.version>1.0</aopalliance.version>
 		
@@ -56,10 +69,22 @@
         
         <!-- com.alibaba fastjson版本 -->
         <fastjson.version>1.2.7</fastjson.version>
+        
+        <!-- org.apache.httpcomponents httpclient版本 -->
+        <httpclient.version>4.5.2</httpclient.version>
+        <!-- org.apache.httpcomponents httpmime版本 -->
+        <httpmime.version>4.5.2</httpmime.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+            <!-- servlet api jar -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
 			<!-- 日志文件管理版本 -->
 			<dependency>
 				<groupId>log4j</groupId>
@@ -347,6 +372,16 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpmime</artifactId>
+                <version>${httpmime.version}</version>
             </dependency>
 		</dependencies>
 	</dependencyManagement>
