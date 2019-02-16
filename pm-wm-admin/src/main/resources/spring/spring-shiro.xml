@@ -39,6 +39,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/home/login = anon
+				/home/getCode = anon
 				/func/upload/upload = anon
 				/plugins/** = anon
 				/img/** = anon
