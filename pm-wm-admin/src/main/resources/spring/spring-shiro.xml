@@ -40,6 +40,7 @@
 			<value>
 				/home/login = anon
 				/home/getCode = anon
+				/JavaScriptServlet=anon
 				/func/upload/upload = anon
 				/plugins/** = anon
 				/img/** = anon

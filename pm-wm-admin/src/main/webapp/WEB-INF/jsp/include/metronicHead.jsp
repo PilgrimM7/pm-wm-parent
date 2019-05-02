@@ -1,6 +1,5 @@
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getContextPath() + "/";
 %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,8 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="plugins/metronic/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
 <link href="plugins/metronic/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" />
 <link href="plugins/metronic/assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
-<!-- hplus -->
-<link href="plugins/hplus/css/style.min.css?v=4.0.0" rel="stylesheet">
 <!-- BEGIN CORE PLUGINS -->
 <script src="plugins/metronic/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="plugins/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -46,3 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="plugins/metronic/assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
 <script src="plugins/metronic/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
+<script type="text/javascript" src="JavaScriptServlet"></script>
+<script type="text/javascript">
+    var _BasePath = "<%=basePath%>";
+</script>

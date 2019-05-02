@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -15,6 +17,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 @Component
 public class MyWebSocketHandler extends TextWebSocketHandler {
 
+	private final static Logger logger = LoggerFactory.getLogger(MyWebSocketHandler.class);
+	
 	private static final Map<String, Map<String, WebSocketSession>> usersMap;
 
 	static {
@@ -26,7 +30,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		String userFlag = session.getAttributes().get("WEBSOCKET_USERFLAG").toString();
-		System.out.println("websocket user[" + userFlag + "]user session id[" + session.getId() + "]已连接");
+		logger.info("websocket user[" + userFlag + "] user session id[" + session.getId() + "]已连接");
 		
 		Map<String, WebSocketSession> socketSessionMap = usersMap.get(userFlag);
 		if (socketSessionMap == null) {
@@ -49,7 +53,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 				usersMap.remove(userFlag);
 			}
 		}
-		System.out.println("websocket user[" + userFlag + "]user session id[" + session.getId() + "]已关闭");
+		logger.info("websocket user[" + userFlag + "] user session id[" + session.getId() + "]已关闭");
 	}
 
 	@Override
@@ -69,7 +73,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 				usersMap.remove(userFlag);
 			}
 		}
-		System.out.println("websocket user[" + userFlag + "]user session id[" + session.getId() + "]已移除");
+		logger.info("websocket user[" + userFlag + "] user session id[" + session.getId() + "]已移除");
 	}
 
 	public boolean supportsPartialMessages() {

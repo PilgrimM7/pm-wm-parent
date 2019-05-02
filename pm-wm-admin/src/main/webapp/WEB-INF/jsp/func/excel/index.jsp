@@ -6,6 +6,7 @@
 <jsp:include page="/WEB-INF/jsp/include/head.jsp" />
 <link href="<c:url value='/plugins/common/metronic/assets/global/css/plugins.min.css' />" rel="stylesheet" type="text/css" />
 <link href="<c:url value='/plugins/bootstrap-fileinput/bootstrap-fileinput.css' />" rel="stylesheet" type="text/css" />
+<link href="plugins/common/metronic/assets/global/css/components.min.css" rel="stylesheet" type="text/css" />
 <script src="<c:url value='/plugins/bootstrap-fileinput/bootstrap-fileinput.js' />" type="text/javascript"></script>
 <title>excel</title>
 </head>

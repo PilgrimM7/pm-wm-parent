@@ -3,18 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	String path = request.getContextPath();
-	String _BasePath = path + "/";
-%>
-<base href="<%=_BasePath%>">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<jsp:include page="/WEB-INF/jsp/include/head.jsp" />
 <link href="plugins/hplus/css/font-awesome.min.css" rel="stylesheet">
 <link href="plugins/hplus/css/style.min.css" rel="stylesheet">
-<script src="plugins/jquery-1.12.4.min.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/rsa/jsbn.js"></script>
 <script src="plugins/rsa/prng4.js"></script>
 <script src="plugins/rsa/rng.js"></script>

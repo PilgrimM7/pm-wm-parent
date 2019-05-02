@@ -16,6 +16,7 @@ String basePath = path + "/";
 <link href="<c:url value='/plugins/hplus/css/font-awesome.min.css?v=4.4.0' />" rel="stylesheet">
 <link href="<c:url value='/plugins/hplus/css/animate.min.css' />" rel="stylesheet">
 <link href="<c:url value='/plugins/hplus/css/style.min.css?v=4.0.0' />" rel="stylesheet">
+<script type="text/javascript" src="JavaScriptServlet"></script>
 <title>H+ 后台主题UI框架 - 主页</title>
 <style>
 </style>

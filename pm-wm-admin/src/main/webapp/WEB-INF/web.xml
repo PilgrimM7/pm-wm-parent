@@ -5,7 +5,9 @@
 	version="3.0">
 
 	<display-name>wm-admin</display-name>
-
+    
+    <!-- Web容器加载顺序ServletContext->context-param->listener->filter->servlet -->
+	
 	<context-param>
 		<param-name>webAppRootKey</param-name>
 		<param-value>wm-admin.root</param-value>
@@ -86,6 +88,48 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- shiro 过滤器 end -->
+	
+	<!-- owasp CSRF防护 -->
+	<context-param>
+       <param-name>Owasp.CsrfGuard.Config</param-name>
+       <param-value>config/Owasp.CsrfGuard.properties</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.owasp.csrfguard.CsrfGuardHttpSessionListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>CSRFGuard</filter-name>
+        <filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CSRFGuard</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>JavaScriptServlet</servlet-name>
+        <servlet-class>org.owasp.csrfguard.servlet.JavaScriptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JavaScriptServlet</servlet-name>
+        <url-pattern>/JavaScriptServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!-- OPTIONS Method Enabled 漏洞防护 -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>restricted methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>PUT</http-method>
+            <!-- <http-method>POST</http-method> -->
+            <http-method>DELETE</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint />
+    </security-constraint>
 
 	<context-param>
 		<param-name>httl.properties</param-name>

@@ -1,24 +1,17 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+    String basePathAll = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+        + request.getContextPath() + "/";
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	String path = request.getContextPath();
-	String basePath = path + "/";
-	String basePathAll = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-        + request.getContextPath() + "/";
-%>
-<base href="<%=basePath%>">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title></title>
-<link rel="stylesheet" href="plugins/layui/css/layui.css">
-<script src="plugins/layui/layui.js"></script>
-<script src="plugins/jquery-1.12.4.min.js"></script>
+<jsp:include page="/WEB-INF/jsp/include/head.jsp" />
 <script type="text/javascript">
-    var _BaseServerUrl = "<%=basePathAll%>";
+    var _BasePathAll = "<%=basePathAll%>";
 </script>
+<title></title>
 </head>
 <body>
 	<div class="layui-container">
@@ -39,7 +32,7 @@ setTimeout('send()', '2000');
 <script>
 var websocket;
 var clientId = '${user.username}';
-var _WebSocketUrl = "ws" + _BaseServerUrl.replace('http', '').replace('https', '') + "ws";
+var _WebSocketUrl = "ws" + _BasePathAll.replace('http', '').replace('https', '') + "ws";
 
 if('WebSocket' in window) {
     websocket = new WebSocket(_WebSocketUrl + "?clientId=" + clientId);
