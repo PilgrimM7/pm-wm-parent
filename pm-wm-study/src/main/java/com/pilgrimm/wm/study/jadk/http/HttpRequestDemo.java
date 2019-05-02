@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -16,6 +17,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -64,6 +66,76 @@ public class HttpRequestDemo {
 				Entry<String, Object> mapEntry = iterator.next();
 				builder.addBinaryBody(mapEntry.getKey(), (File) mapEntry.getValue());
 			}
+		}
+		
+		HttpEntity requestEntity = builder.build();// 生成 HTTP POST 实体  	
+		httpPost.setEntity(requestEntity);
+		try {
+			// httpClient对象执行post请求,并返回响应参数对象
+			httpResponse = httpClient.execute(httpPost);
+			// 从响应对象中获取响应内容
+			HttpEntity responseEntity = httpResponse.getEntity();
+			result = EntityUtils.toString(responseEntity);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// 关闭资源
+			if (null != httpResponse) {
+				try {
+					httpResponse.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (null != httpClient) {
+				try {
+					httpClient.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	
+	public static String doPost(String url, Map<String, Object> params, List<File> files) {
+		CloseableHttpClient httpClient = null;
+		CloseableHttpResponse httpResponse = null;
+		String result = "";
+		// 创建httpClient实例
+		httpClient = HttpClients.createDefault();
+		// 创建httpPost远程连接实例
+		HttpPost httpPost = new HttpPost(url);
+		// 配置请求参数实例
+		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(35000)// 设置连接主机服务超时时间
+				.setConnectionRequestTimeout(35000)// 设置连接请求超时时间
+				.setSocketTimeout(60000)// 设置读取数据连接超时时间
+				.build();
+		// 为httpPost实例设置配置
+		httpPost.setConfig(requestConfig);
+
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		builder.setCharset(Charset.forName("UTF-8")); // 设置请求的编码格式
+		builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE); // 设置浏览器兼容模式
+		
+		// 封装post请求参数
+		if (null != params && params.size() > 0) {
+			// 通过map集成entrySet方法获取entity
+			Set<Entry<String, Object>> entrySet = params.entrySet();
+			// 循环遍历，获取迭代器
+			Iterator<Entry<String, Object>> iterator = entrySet.iterator();
+			while (iterator.hasNext()) {
+				Entry<String, Object> mapEntry = iterator.next();
+				builder.addTextBody(mapEntry.getKey(), mapEntry.getValue().toString()); // 设置请求参数
+			}
+		}
+		
+		// 封装post请求文件
+		for (File file : files) {
+//			builder.addBinaryBody("files", file);
+			builder.addPart("files", new FileBody(file));
 		}
 		
 		HttpEntity requestEntity = builder.build();// 生成 HTTP POST 实体  	

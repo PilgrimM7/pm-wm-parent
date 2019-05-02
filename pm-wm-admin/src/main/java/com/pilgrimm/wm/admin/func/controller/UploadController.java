@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -42,6 +43,35 @@ public class UploadController {
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		map.put("errcode", "0");
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/upload2")
+	public Map<String, Object> upload(HttpServletRequest request, HttpServletResponse response, 
+			@RequestParam("files") MultipartFile[] files) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		String param_1 = request.getParameter("param_1");
+		System.out.println("param_1 -> " + param_1);
+		
+		for (MultipartFile mFile : files) {
+			try {
+				File file = new File("F:\\upload\\" + mFile.getOriginalFilename());
+				InputStream in = mFile.getInputStream();
+				FileOutputStream fos = new FileOutputStream(file);
+				byte[] buffer = new byte[1024];
+				int len = 0;
+				while ((len = in.read(buffer)) != -1) {
+					fos.write(buffer, 0, len);
+				}
+				in.close();
+				fos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		map.put("errcode", "0");
 		return map;
