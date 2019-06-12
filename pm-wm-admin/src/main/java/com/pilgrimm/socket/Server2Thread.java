@@ -1,10 +1,9 @@
 package com.pilgrimm.socket;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class Server2Thread implements Runnable {
@@ -20,9 +19,7 @@ public class Server2Thread implements Runnable {
 
 		try {
 			// 获取一个输入流，用来读取客户端所发送的登录信息
-			InputStream is = client.getInputStream();// 字节输入流
-			InputStreamReader isr = new InputStreamReader(is, "GBK");// 将字节流转为
-			BufferedReader br = new BufferedReader(isr);// 为输入流添加缓冲
+			 BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"));
 
 			String info = null;
 			while ((info = br.readLine()) != null) {
@@ -31,8 +28,7 @@ public class Server2Thread implements Runnable {
 			client.shutdownInput();// 关闭输入流
 
 			// 获取输出流
-			OutputStream os = client.getOutputStream();
-			PrintWriter pw = new PrintWriter(os);// 包装打印流
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF-8"));
 			
 			// 2、入账明细
 			StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"utf-8\"?><bzjpkg>"
@@ -239,16 +235,14 @@ public class Server2Thread implements Runnable {
 //    				+ "</bzjpkg>");
 			
             
-			pw.write(sb.toString());
-//			pw.write("好的，我收到消息了，你可以出去玩了");
-			pw.flush();
+			bw.write(sb.toString());
+//			bw.write("好的，我收到消息了，你可以出去玩了");
+			bw.flush();
 			client.shutdownOutput();
 
 			// 关闭资源
-			pw.close();
 			br.close();
-			isr.close();
-			is.close();
+			bw.close();
 			client.close();
 		} catch (Exception e) {
 			e.printStackTrace();

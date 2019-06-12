@@ -1,10 +1,9 @@
 package com.pilgrimm.socket.server;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.Callable;
@@ -64,9 +63,7 @@ public class ServerServlet extends HttpServlet {
 
 			try {
 				// 获取一个输入流，用来读取客户端所发送的登录信息
-				InputStream is = client.getInputStream();// 字节输入流
-				InputStreamReader isr = new InputStreamReader(is, "GBK");// 将字节流转为
-				BufferedReader br = new BufferedReader(isr);// 为输入流添加缓冲
+				BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"));
 
 				String info = null;
 				while ((info = br.readLine()) != null) {
@@ -75,19 +72,16 @@ public class ServerServlet extends HttpServlet {
 				client.shutdownInput();// 关闭输入流
 
 				// 获取输出流
-				OutputStream os = client.getOutputStream();
-				PrintWriter pw = new PrintWriter(os);// 包装打印流
+				BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF-8"));
 
 				StringBuffer sb = new StringBuffer();
-				pw.write(sb.toString());
-				pw.flush();
+				bw.write(sb.toString());
+				bw.flush();
 				client.shutdownOutput();
 
 				// 关闭资源
-				pw.close();
 				br.close();
-				isr.close();
-				is.close();
+				bw.close();
 				client.close();
 			} catch (Exception e) {
 				e.printStackTrace();

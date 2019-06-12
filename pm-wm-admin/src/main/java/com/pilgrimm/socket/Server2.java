@@ -8,7 +8,7 @@ public class Server2 {
 		
 		try {
 			// 服务端在8888端口监听客户端请求的TCP连接
-			ServerSocket server = new ServerSocket(8888);
+			ServerSocket server = new ServerSocket(8887);
 			System.out.println("****服务器开始启动，等待客户端上线****");
 			Socket client = null;
 			boolean f = true;
