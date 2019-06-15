@@ -32,7 +32,7 @@ public class ServerServlet extends HttpServlet {
 		try {
 			// 服务端在8888端口监听客户端请求的TCP连接
 			ServerSocket server = new ServerSocket(8888);
-			System.out.println("****服务器开始启动，等待客户端上线****");
+			System.out.println("****服务端启动，等待客户端上线****");
 			Socket socket = null;
 			boolean f = true;
 			while (f) {
