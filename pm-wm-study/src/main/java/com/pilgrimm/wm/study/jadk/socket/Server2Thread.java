@@ -1,4 +1,4 @@
-package com.pilgrimm.socket;
+package com.pilgrimm.wm.study.jadk.socket;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,11 +7,13 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class Server2Thread implements Runnable {
+	
+	private static final String ENCODE = "UTF-8";
 
-	private Socket client = null;
+	private Socket socket = null;
 
 	public Server2Thread(Socket client) {
-		this.client = client;
+		this.socket = client;
 	}
 
 	@Override
@@ -19,16 +21,16 @@ public class Server2Thread implements Runnable {
 
 		try {
 			// 获取一个输入流，用来读取客户端所发送的登录信息
-			 BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), ENCODE));
 
 			String info = null;
 			while ((info = br.readLine()) != null) {
-				System.out.println("我是服务器，客户端说" + info);
+				System.out.println("客户端说：" + info);
 			}
-			client.shutdownInput();// 关闭输入流
+			socket.shutdownInput();// 关闭输入流
 
 			// 获取输出流
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF-8"));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), ENCODE));
 			
 			// 2、入账明细
 			StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"utf-8\"?><bzjpkg>"
@@ -238,12 +240,12 @@ public class Server2Thread implements Runnable {
 			bw.write(sb.toString());
 //			bw.write("好的，我收到消息了，你可以出去玩了");
 			bw.flush();
-			client.shutdownOutput();
+			socket.shutdownOutput();
 
 			// 关闭资源
 			br.close();
 			bw.close();
-			client.close();
+			socket.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

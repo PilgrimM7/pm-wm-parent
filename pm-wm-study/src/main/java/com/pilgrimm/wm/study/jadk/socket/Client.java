@@ -1,4 +1,4 @@
-package com.pilgrimm.socket;
+package com.pilgrimm.wm.study.jadk.socket;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,13 +10,15 @@ import java.net.UnknownHostException;
 
 public class Client {
 	
+	private static final String ENCODE = "UTF-8";
+	
 	public static void main(String[] args) {
 		
 		try {
 			// 1.创建 socket 指定服务器地址和端
-			Socket client = new Socket("127.0.0.1", 11167);
+			Socket socket = new Socket("127.0.0.1", 11167);
 			// 2.客户端向服务器发送登录信息
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOutputStream(), "UTF-8"));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), ENCODE));
             
             // 1、保证金到账
 //			StringBuffer sb = new StringBuffer("<?xml version=\"1.0\" encoding=\"utf-8\"?><bzjpkg>"
@@ -46,20 +48,20 @@ public class Client {
             		+ "</bzjpkg>");
             bw.write(sb.toString());
             bw.flush();
-            client.shutdownOutput();
+            socket.shutdownOutput();
 
             // 3. 获取输入流
-            BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream(), "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), ENCODE));
             String info = null;
             while ((info = br.readLine()) != null) {
-                System.out.println("服务器发来消息说：" + info);
+                System.out.println("服务端说：" + info);
             }
-            client.shutdownInput();
+            socket.shutdownInput();
 
             // 4.关闭其他资源
             bw.close();
             br.close();
-            client.close();
+            socket.close();
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {

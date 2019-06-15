@@ -1,4 +1,4 @@
-package com.pilgrimm.socket;
+package com.pilgrimm.wm.study.jadk.socket;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,7 +9,7 @@ public class Server2 {
 		try {
 			// 服务端在8888端口监听客户端请求的TCP连接
 			ServerSocket server = new ServerSocket(8887);
-			System.out.println("****服务器开始启动，等待客户端上线****");
+			System.out.println("****服务端启动，等待客户端上线****");
 			Socket client = null;
 			boolean f = true;
 			while (f) {
