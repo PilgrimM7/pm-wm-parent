@@ -71,7 +71,7 @@
         <fastjson.version>1.2.7</fastjson.version>
         
         <!-- org.apache.httpcomponents httpclient版本 -->
-        <httpclient.version>4.5.2</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <!-- org.apache.httpcomponents httpmime版本 -->
         <httpmime.version>4.5.2</httpmime.version>
         
