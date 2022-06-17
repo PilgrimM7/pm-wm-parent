@@ -68,7 +68,7 @@
         <xmlworker.version>5.5.12</xmlworker.version>
         
         <!-- com.alibaba fastjson版本 -->
-        <fastjson.version>1.2.7</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         
         <!-- org.apache.httpcomponents httpclient版本 -->
         <httpclient.version>4.5.2</httpclient.version>
