@@ -75,7 +75,7 @@
         <!-- org.apache.httpcomponents httpmime版本 -->
         <httpmime.version>4.5.2</httpmime.version>
         
-        <csrfguard.version>3.1.0</csrfguard.version>
+        <csrfguard.version>4.0.0</csrfguard.version>
         <!-- https://mvnrepository.com/artifact/org.owasp/antisamy -->
         <antisamy.version>1.4</antisamy.version>
 	</properties>
