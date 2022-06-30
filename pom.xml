@@ -61,7 +61,7 @@
 		<htmlcleaner.version>2.2</htmlcleaner.version>
 		
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
-        <itextpdf.version>5.5.11</itextpdf.version>
+        <itextpdf.version>5.5.12</itextpdf.version>
         <!-- https://mvnrepository.com/artifact/com.itextpdf/itext-asian -->
         <itext-asian.version>5.2.0</itext-asian.version>
         <!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
