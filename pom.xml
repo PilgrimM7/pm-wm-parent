@@ -53,7 +53,7 @@
 		<!-- 编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<spring.version>4.2.6.RELEASE</spring.version>
+		<spring.version>5.2.20.RELEASE</spring.version>
 		<aopalliance.version>1.0</aopalliance.version>
 		
 		<!-- log4j日志文件管理包版本 -->
