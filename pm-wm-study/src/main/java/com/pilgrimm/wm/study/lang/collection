@@ -1,1 +1,29 @@
+package com.pilgrimm.wm.study.lang.collection;
 
+import java.util.ArrayList;
+
+/**
+ * <b>说明：</b>TODO
+ * <b>日期：</b>2022/3/14 15:32
+ *
+ * @author 苗海超
+ */
+public class ListTest {
+
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("0");
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        
+        for (int i=0; i<list.size(); i++) {
+            System.out.println(list.get(i));
+            if (list.get(i).equals("2")) {
+                list.remove(i);
+                i--;
+            }
+        }
+    }
+}
